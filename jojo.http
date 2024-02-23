@@ -1,0 +1,6 @@
+@jojo_HostAddress = http://localhost:5224
+
+GET {{jojo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
