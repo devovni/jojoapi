@@ -2,8 +2,8 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Jojo;
-public class DataContext(IConfiguration config)
+namespace Jojo.Data;
+public class DataContext(IConfiguration config): IDataContext
 {
     private readonly IConfiguration _config = config;
 
