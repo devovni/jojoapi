@@ -1,3 +1,4 @@
+global using  System.Data;
 using Jojo.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,4 +22,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+static async Task<IResult> GetAllCharacters(ICharacterData data)
+{
+    try
+    {
+        return Results.Ok(await data.GetAll());
+    }
+    catch(Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+}
+app.MapGet("/characters", GetAllCharacters);
+
 app.Run();
+
