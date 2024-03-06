@@ -1,13 +1,31 @@
+using System.Text.Json.Serialization;
+using NpgsqlTypes;
+
 namespace Jojo.Models;
 public class Character
 {
-    public int Id { get; set; }
-    public required string Name { get; set; }
-    public DateOnly Birthday { get; set; }
-    public required string Gender { get; set; }
-    public int Height { get; set; }
-    public int Weight { get; set; }
+    public int Char_id { get; set; }
+    public required string FullName { get; set; }
+    [JsonConverter(typeof(DateOnlyJsonConverter))]
+    public DateTime Birthdate { get; set; }
+    [JsonConverter(typeof(JsonStringEnumConverter<Sex>))]
+    public  Sex Sex {get; set;}
+    public int Height_in_cm { get; set; }
+    public int Weight_in_kg { get; set; }
     public required string Nationality { get; set; }
-    public required string Appearances { get; set; }
+    public required ICollection<string> Appareances { get; set; }
     public Stand? Stand { get; set; }
 }
+
+    public enum Sex 
+    {
+        [PgName("Unknown")]
+        Unknown,
+        [PgName("Male")]
+        Male,
+        [PgName("Female")]
+        Female,
+        [PgName("NotApplicable")]
+        NotApplicable,
+
+    }
