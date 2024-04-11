@@ -14,6 +14,6 @@ public class DateOnlyJsonConverter : JsonConverter<DateTime>
 
     public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
     {
-        writer.WriteStringValue(value.Date.ToString(Format, CultureInfo.InvariantCulture));
+        writer.WriteStringValue(value.ToString(Format, CultureInfo.InvariantCulture));
     }
 }
